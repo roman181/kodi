@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bruchsal Hustle - Imperium Edition</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Character Selection Screen -->
+    <div id="character-selection" class="screen active">
+        <div class="selection-container">
+            <h1 class="game-title">BRUCHSAL HUSTLE</h1>
+            <p class="subtitle">Imperium Edition</p>
+            
+            <div class="character-selection-content">
+                <h2>Wähle deinen Charakter</h2>
+                <div class="characters">
+                    <div class="character-card" data-character="male">
+                        <img src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/03c3a21f-3e60-4577-8af4-0dadb2308aeb.png" alt="Männlicher Charakter">
+                        <p>Mann</p>
+                    </div>
+                    <div class="character-card" data-character="female">
+                        <img src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/03c3a21f-3e60-4577-8af4-0dadb2308aeb.png" alt="Weiblicher Charakter">
+                        <p>Frau</p>
+                    </div>
+                </div>
+                
+                <div class="name-input-section">
+                    <input type="text" id="player-name" class="form-control" placeholder="Gib deinen Namen ein" maxlength="20">
+                    <button id="start-game" class="btn btn--primary">Spiel starten</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Game Screen -->
+    <div id="main-game" class="screen">
+        <div class="game-container">
+            <!-- Status Bar -->
+            <div class="status-bar">
+                <div class="status-item">
+                    <span class="status-label">Geld:</span>
+                    <span id="money-display" class="status-value">€50</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Leben:</span>
+                    <span id="health-display" class="status-value">100</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Respekt:</span>
+                    <span id="respect-display" class="status-value">0</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Zeit:</span>
+                    <span id="time-display" class="status-value">08:00</span>
+                </div>
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="main-content">
+                <div id="game-area" class="game-area">
+                    <h2>Willkommen in Bruchsal, <span id="player-name-display"></span>!</h2>
+                    <p>Du stehst am Anfang deiner Karriere. Mit €50 und einem Smartphone musst du dir einen Namen machen.</p>
+                    
+                    <div class="quick-actions">
+                        <button class="btn btn--secondary" id="legal-work-btn">Legale Arbeit</button>
+                        <button class="btn btn--outline" id="street-deal-btn">Straßengeschäfte</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Smartphone Interface -->
+            <div class="smartphone-container">
+                <button id="smartphone-btn" class="smartphone-icon">📱</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Smartphone Apps Screen -->
+    <div id="smartphone-screen" class="screen smartphone-modal">
+        <div class="smartphone-interface">
+            <div class="phone-header">
+                <button id="close-phone" class="close-btn">×</button>
+                <span class="phone-title">HustlePhone</span>
+            </div>
+            
+            <div class="phone-content">
+                <img src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/c600545e-1b54-42b1-8217-035ce1988261.png" alt="Smartphone Apps" class="phone-bg">
+                
+                <div class="app-grid">
+                    <div class="app-icon" data-app="hustlechat">
+                        <div class="app-icon-bg">💬</div>
+                        <span>HustleChat</span>
+                    </div>
+                    <div class="app-icon" data-app="maps">
+                        <div class="app-icon-bg">🗺️</div>
+                        <span>Bruchsal Maps</span>
+                    </div>
+                    <div class="app-icon" data-app="contacts">
+                        <div class="app-icon-bg">👥</div>
+                        <span>Kontakte</span>
+                    </div>
+                    <div class="app-icon" data-app="darkweb">
+                        <div class="app-icon-bg">🌐</div>
+                        <span>Darkweb</span>
+                    </div>
+                    <div class="app-icon" data-app="security">
+                        <div class="app-icon-bg">🛡️</div>
+                        <span>Security</span>
+                    </div>
+                    <div class="app-icon" data-app="takko">
+                        <div class="app-icon-bg">👔</div>
+                        <span>Takko Shop</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HustleChat App -->
+    <div id="hustlechat-screen" class="screen app-screen">
+        <div class="app-container">
+            <div class="app-header">
+                <button class="back-btn">←</button>
+                <h3>HustleChat</h3>
+            </div>
+            <div class="app-content">
+                <div id="chat-messages" class="chat-container">
+                    <!-- Chat messages will be generated here -->
+                </div>
+                <div class="mission-actions">
+                    <button id="accept-mission" class="btn btn--primary" style="display:none;">Mission annehmen</button>
+                    <button id="decline-mission" class="btn btn--secondary" style="display:none;">Ablehnen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Maps App -->
+    <div id="maps-screen" class="screen app-screen">
+        <div class="app-container">
+            <div class="app-header">
+                <button class="back-btn">←</button>
+                <h3>Bruchsal Maps</h3>
+            </div>
+            <div class="app-content">
+                <img src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/0e6d310d-3507-41a8-aa56-b3c238d06bd1.png" alt="Bruchsal Map" class="map-image">
+                <div class="location-list">
+                    <div class="location-item" data-location="zentrum">📍 Bruchsal Zentrum</div>
+                    <div class="location-item" data-location="bahnhof">🚉 Bahnhofsgebiet</div>
+                    <div class="location-item" data-location="industrie">🏭 Industriegebiet</div>
+                    <div class="location-item" data-location="wohnviertel">🏠 Wohnviertel</div>
+                    <div class="location-item" data-location="park">🌳 Stadtpark</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Darkweb Shop -->
+    <div id="darkweb-screen" class="screen app-screen">
+        <div class="app-container">
+            <div class="app-header">
+                <button class="back-btn">←</button>
+                <h3>Darkweb Marktplatz</h3>
+            </div>
+            <div class="app-content">
+                <div class="shop-categories">
+                    <button class="category-btn active" data-category="weapons">Waffen</button>
+                    <button class="category-btn" data-category="items">Gegenstände</button>
+                    <button class="category-btn" data-category="services">Services</button>
+                </div>
+                
+                <div id="shop-items" class="shop-grid">
+                    <!-- Items will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Takko Shop -->
+    <div id="takko-screen" class="screen app-screen">
+        <div class="app-container">
+            <div class="app-header">
+                <button class="back-btn">←</button>
+                <h3>Takko Fashion</h3>
+            </div>
+            <div class="app-content">
+                <div id="luxury-items" class="shop-grid">
+                    <!-- Luxury items will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contacts App -->
+    <div id="contacts-screen" class="screen app-screen">
+        <div class="app-container">
+            <div class="app-header">
+                <button class="back-btn">←</button>
+                <h3>Kontakte</h3>
+            </div>
+            <div class="app-content">
+                <div id="contacts-list" class="contacts-container">
+                    <!-- Contacts will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Security Dashboard -->
+    <div id="security-screen" class="screen app-screen">
+        <div class="app-container">
+            <div class="app-header">
+                <button class="back-btn">←</button>
+                <h3>Security Dashboard</h3>
+            </div>
+            <div class="app-content">
+                <img src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/07772195-7454-4a25-94c6-d155f0cf779f.png" alt="Bodyguards" class="bodyguard-image">
+                <div id="bodyguards-list" class="security-container">
+                    <p class="security-info">Keine Bodyguards angestellt</p>
+                    <button id="hire-bodyguard" class="btn btn--primary">Bodyguard anheuern (€1000)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Event Modal -->
+    <div id="event-modal" class="modal hidden">
+        <div class="modal-content">
+            <h3 id="event-title"></h3>
+            <p id="event-description"></p>
+            <div class="event-actions">
+                <button id="event-accept" class="btn btn--primary">Akzeptieren</button>
+                <button id="event-decline" class="btn btn--secondary">Ablehnen</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification System -->
+    <div id="notifications" class="notifications-container"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
